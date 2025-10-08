@@ -1,0 +1,21 @@
+// Use DBML to define your database structure
+
+//https://dbdiagram.io/d
+
+Table colegios {
+   colegio_id integer [primary key] 
+  nombre varchar 
+  
+
+
+}
+
+
+
+Table correos{
+
+  correo_id integer [primary key]
+  correo varchar
+  colegio_id int  [not null , ref :> colegio.id]
+
+}
