@@ -9,7 +9,7 @@ use  colegiosDB;
 
 CREATE TABLE IF NOT EXISTS colegios(
 
-    colegio_id int primary key AUTO_INCREMENT ,
+    colegio_id varchar(50) primary key not null ,
     nombre varchar(100) not null
 
 );
@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS colegios(
 
 
 CREATE TABLE IF NOT EXISTS correos (
-correo_id int primary key AUTO_INCREMENT NOT NULL ,
+correo_id varchar(50) primary key  NOT NULL ,
 correo  varchar (100) unique not null ,
-colegio_id int not null,
+colegio_id varchar(50) not null,
 
 foreign key  (colegio_id) references colegios(colegio_id)
 
