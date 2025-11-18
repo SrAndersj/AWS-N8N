@@ -1,0 +1,307 @@
+{
+  "createdAt": "2025-10-09T00:39:19.247Z",
+  "updatedAt": "2025-11-18T19:21:35.000Z",
+  "id": "wa63c7wOKRkWwfZ7",
+  "name": "Estilos de aprendizaje",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "airtableTokenApi",
+        "baseId": {
+          "__rl": true,
+          "value": "appgq6VQenrt040I7",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "tbl8GNYwOttGOimY7",
+          "mode": "id"
+        },
+        "triggerField": "=Creada",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        -128
+      ],
+      "id": "85f72afb-ce5e-4ff6-8dd3-2879609aaaf6",
+      "name": "Airtable Trigger",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "gKvwaEB3Ol3xvg35",
+          "name": "Airtable account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrada de datos desde el nodo anterior\nconst items = $input.all();\n\n// Procesar cada registro\nreturn items.map(item => {\n  const newFields = Object.fromEntries(\n    Object.entries(item.json.fields).map(([key, value]) => {\n      const keyLower = key.trim().toLowerCase();\n\n      // Si el campo es \"nombre\" o \"correo\", lo dejamos igual\n      if (keyLower === \"nombre\" || keyLower === \"correo\") {\n        return [key, value];\n      }\n\n      // Extraer número completo al inicio del nombre del campo (antes del punto)\n      const match = key.trim().match(/^(\\d+)/);\n      const shortKey = match ? match[1] : key.trim().charAt(0);\n\n      // Reducir valor (si es texto) al primer carácter visible\n      const shortValue =\n        typeof value === \"string\" && value.length > 0\n          ? value.trim().charAt(0)\n          : value;\n\n      return [shortKey, shortValue];\n    })\n  );\n\n  // Devolver el resultado con los cambios aplicados\n  return {\n    json: newFields,\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -592,
+        -128
+      ],
+      "id": "c2062c5b-9ed5-4121-824f-bf017a7bcace",
+      "name": "SoloPrimerCaracter"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map(item => {\n  const newFields = Object.fromEntries(\n    Object.entries(item.json).map(([key, value]) => {\n      // Si el campo es \"Nombre\", lo dejamos igual\n      if (key.trim() === \"Nombre\") {\n        return [key, value];\n      }\n\n      // Aplicar reglas de conversión\n      let newValue = value;\n      switch (value) {\n        case 'A': newValue = 'K'; break;\n        case 'B': newValue = 'A'; break;\n        case 'C': newValue = 'R'; break;\n        case 'D': newValue = 'V'; break;\n      }\n\n      return [key, newValue];\n    })\n  );\n\n  return {\n    json: newFields\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -416,
+        -128
+      ],
+      "id": "4339a906-066c-4b0d-aa4d-a1cceac1e4db",
+      "name": "conversionDeLetrasAEstandarVark"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrada de datos desde el nodo anterior\nconst items = $input.all();\n\n// Procesar cada registro individualmente\nreturn items.map(item => {\n  const fields = item.json;\n  const totalCounts = { K: 0, A: 0, R: 0, V: 0 };\n\n  // Recorrer todos los campos\n  for (const [key, value] of Object.entries(fields)) {\n    const keyLower = key.trim().toLowerCase();\n\n    // Saltar los campos \"nombre\" o \"correo\"\n    if (keyLower === \"nombre\" || keyLower === \"correo\") continue;\n\n    // Si el valor coincide con alguna letra, incrementar su contador\n    if (totalCounts.hasOwnProperty(value)) {\n      totalCounts[value]++;\n    }\n  }\n\n  // Retornar el resultado manteniendo nombre y correo\n  return {\n    json: {\n      Nombre: fields.Nombre || \"Sin nombre\",\n      correo: fields.correo || \"Sin correo\",\n      ...totalCounts\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -272,
+        -128
+      ],
+      "id": "cd1a8cfb-79ed-42f1-a1ad-6a9e3c0a134f",
+      "name": "Conteo"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\nvas a generar una grafica en html con los siguientes datos\n\n\n\n\n{{ Object.keys($json)[2] }}\n{{ $json[Object.keys($json)[2]] }}\n\n{{ Object.keys($json)[3] }}\n{{ $json[Object.keys($json)[3]] }}\n\n{{ Object.keys($json)[4] }}\n{{ $json[Object.keys($json)[4]] }}\n\n{{ Object.keys($json)[5] }}\n{{ $json[Object.keys($json)[5]] }}\n\n\n\nV   es visual\nA   es auditivo\nR   es Lecto Escritor\nK   es kinestesico\n\nesto es del modelo de estilos de Aprendisaje VARK y los datos corresponden a los resultados de una encuensta hecha por {{ $json.Nombre }} ,incluye titulo de resultados para esa persona ",
+        "options": {
+          "systemMessage": "No escribas ni una sola palabra que no sea el HTML , solo dame el html\ny recuerda que el html generado sera enviado por correo entonces que estéticamente no falle porque  recuerda que hay cierto tipo de HTML que  no puede procesar bien el correo"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        16,
+        -192
+      ],
+      "id": "f7653dab-966c-461e-8179-46d5e179859b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        80
+      ],
+      "id": "38808175-30f0-4ebf-95fd-7cff923ca54f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "bxVux5UWXYAa7SWs",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "{{ $json.output }}"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        -112
+      ],
+      "id": "c5a0d5e4-46ff-48b1-97d0-8c419c2e9590",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.correo }}",
+        "subject": "=Estilos de Aprendizaje de  {{ $json.Nombre }}",
+        "message": "={{ $json.html }}\n\n--------\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Estilos de Aprendizaje</title>\n<style>\n  body {\n    font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n    background-color: #f4f6f9;\n    margin: 30px;\n  }\n  table {\n    width: 100%;\n    border-collapse: collapse;\n    margin-bottom: 30px;\n  }\n  th, td {\n    border: 1px solid #2c3e50;\n    padding: 10px 15px;\n    vertical-align: top;\n  }\n  th {\n    background-color: #1f3b63;\n    color: #fff;\n    text-align: left;\n    width: 30%;\n  }\n  td {\n    background-color: #eaf0f6;\n  }\n  .title {\n    background-color: #1f3b63;\n    color: white;\n    font-weight: bold;\n    text-align: center;\n    font-size: 1.2em;\n  }\n</style>\n</head>\n<body>\n\n<table>\n  <tr>\n    <th>SU ESTILO ES:</th>\n    <td class=\"title\">VISUAL</td>\n  </tr>\n  <tr>\n    <th>SE CARACTERIZA POR:</th>\n    <td>En el estilo visual se tiene preferencia por la información recibida a través del sentido de la vista. Por lo general, las personas con preferencia a lo visual les funcionan para su aprendizaje el uso de mapas, diagramas de flujo, gráficas, fotografías, mapas conceptuales, mapas mentales, colores, símbolos y flechas.</td>\n  </tr>\n  <tr>\n    <th>SE LE SUGIEREN LAS SIGUIENTES ESTRATEGIAS DE ESTUDIO:</th>\n    <td>\n      instrucciones escritas,<br>\n      mapas conceptuales,<br>\n      diagramas, modelos, cuadros sinópticos,<br>\n      animaciones computacionales,<br>\n      videos, transparencias, fotografías e ilustraciones.\n    </td>\n  </tr>\n</table>\n\n<table>\n  <tr>\n    <th>SU ESTILO ES:</th>\n    <td class=\"title\">AUDITIVO</td>\n  </tr>\n  <tr>\n    <th>SE CARACTERIZA POR:</th>\n    <td>En el estilo auditivo se aprende más fácilmente al escuchar o hablar. Los estudiantes auditivos aprenden mejor por medio de tutoriales en audio, grupos de discusión, chats o exposiciones.</td>\n  </tr>\n  <tr>\n    <th>SE LE SUGIEREN LAS SIGUIENTES ESTRATEGIAS DE ESTUDIO:</th>\n    <td>\n      instrucciones verbales,<br>\n      repetir sonidos parecidos,<br>\n      audiocasettes,<br>\n      debates, discusiones y confrontaciones,<br>\n      lluvia de ideas,<br>\n      leer el mismo texto con distinta reflexión,<br>\n      lectura guiada y comentada.\n    </td>\n  </tr>\n</table>\n\n<table>\n  <tr>\n    <th>SU ESTILO ES:</th>\n    <td class=\"title\">LECTO ESCRITOR</td>\n  </tr>\n  <tr>\n    <th>SE CARACTERIZA POR:</th>\n    <td>En el estilo Lecto Escritor los estudiantes prefieren todo lo que se relacione con leer y escribir. Cuando leen vocalizan las palabras, algunas veces sólo moviendo los labios y otras diciendo las palabras con voz audible. Repiten las cosas en voz alta cuando quieren recordarlas, ya que la repetición oral se queda grabada muy bien en su memoria. Les parece útil seguir lo que el maestro dice si tienen notas de apoyo. Revisan material y estudian principalmente con notas o reorganizando la información en forma de resumen.</td>\n  </tr>\n  <tr>\n    <th>SE LE SUGIEREN LAS SIGUIENTES ESTRATEGIAS DE ESTUDIO:</th>\n    <td>\n      escritos de un minuto,<br>\n      composiciones literarias, diarios, bitácoras y reportes,<br>\n      elaboración resúmenes, reseñas y síntesis de textos,<br>\n      revisión de textos de los compañeros.\n    </td>\n  </tr>\n</table>\n\n<table>\n  <tr>\n    <th>SU ESTILO ES:</th>\n    <td class=\"title\">KINESTÉSICO</td>\n  </tr>\n  <tr>\n    <th>SE CARACTERIZA POR:</th>\n    <td>En el estilo kinestésico predomina la percepción por medio de sensaciones y emociones, a los individuos de esta categoría les es más fácil aprender haciendo, experimentando y les agrada el trabajo en equipo. Dentro de sus posibilidades para un mejor aprendizaje se encuentran el uso de experiencias, simulaciones, ejemplos, prácticas, demostraciones, videos, casos de estudio.</td>\n  </tr>\n  <tr>\n    <th>SE LE SUGIEREN LAS SIGUIENTES ESTRATEGIAS DE ESTUDIO:</th>\n    <td>\n      juego de roles y dramatizaciones,<br>\n      dinámicas grupales que requieran sentarse y pararse,<br>\n      el pizarrón para resolver problemas,<br>\n      manipulación de objetos para explicación de fenómenos,<br>\n      gestos para acompañar las instrucciones orales.\n    </td>\n  </tr>\n</table>\n\n</body>\n</html>\n\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        736,
+        64
+      ],
+      "id": "a579cf28-e191-437a-a115-5bb5b435260b",
+      "name": "Send a message",
+      "webhookId": "c9c2467a-d3f3-4c34-839d-025a2b4137e6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "74UvCmbjWA7NUg5s",
+          "name": "jhonnatan.castano.documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        496,
+        64
+      ],
+      "id": "5cbba6a2-ad12-420d-9368-25977f796090",
+      "name": "Merge"
+    }
+  ],
+  "connections": {
+    "Airtable Trigger": {
+      "main": [
+        [
+          {
+            "node": "SoloPrimerCaracter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SoloPrimerCaracter": {
+      "main": [
+        [
+          {
+            "node": "conversionDeLetrasAEstandarVark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "conversionDeLetrasAEstandarVark": {
+      "main": [
+        [
+          {
+            "node": "Conteo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conteo": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Airtable Trigger": {
+      "lastTimeChecked": "2025-11-18T19:21:35Z"
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "9fc32c45-4487-4224-a9b2-bfe701a7524a",
+  "triggerCount": 1,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-09T00:39:19.256Z",
+      "updatedAt": "2025-10-09T00:39:19.256Z",
+      "role": "workflow:owner",
+      "workflowId": "wa63c7wOKRkWwfZ7",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

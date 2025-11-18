@@ -1,0 +1,324 @@
+{
+  "createdAt": "2025-10-03T21:26:06.945Z",
+  "updatedAt": "2025-10-07T00:16:52.000Z",
+  "id": "1FWt5oARqKEZ8bQ8",
+  "name": "1.1CapturaCorreosFallidosColegios_.DOCUMENTS_GMAIL",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 40,
+        "filters": {
+          "q": "Mail Delivery Subsystem"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1984,
+        -128
+      ],
+      "id": "8e06631a-483b-4a3d-8804-f44e618c4f12",
+      "name": "Gmail",
+      "webhookId": "7bf24ee8-e148-4a40-8515-318e113493d8"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1424,
+        -64
+      ],
+      "id": "6c2ffe08-7e7e-4524-b301-62cbebff2988",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        -976,
+        80
+      ],
+      "id": "b390bede-4bbb-417b-8651-15f32e6d445c"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4",
+          "mode": "list",
+          "cachedResultName": "1N8N_EMAIL_SEND_COLEGIOS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 400758099,
+          "mode": "list",
+          "cachedResultName": "Fallido",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit#gid=400758099"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.output }}",
+            "Error": "={{ $('Loop Over Items').item.json.snippet }}",
+            "InternalDate": "={{ $('Loop Over Items').item.json.internalDate }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "InternalDate",
+              "displayName": "InternalDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -816,
+        -224
+      ],
+      "id": "0f414766-aab2-466f-9493-cbd0eb0d7e66",
+      "name": "Google Sheets"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 40,
+        "filters": {
+          "q": "Delivery has failed to these recipients or groups"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1984,
+        80
+      ],
+      "id": "0bbe5a18-d429-4f8e-baae-ea6b4249f543",
+      "name": "Gmail1",
+      "webhookId": "f7f6355b-86bb-44f4-ac69-3b446729ec15"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1712,
+        0
+      ],
+      "id": "a6d04b96-7482-4f6d-9715-8cbbeae290f1",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2272,
+        -48
+      ],
+      "id": "7ab24f0a-bb34-4aa7-b34e-88f4ec26d7f7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7ffa4a12-188c-4ad2-a07f-955dce1a0ca3",
+              "name": "output",
+              "value": "={{ $json.snippet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/)[0] }}\n\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1120,
+        -208
+      ],
+      "id": "66761547-bbed-49c8-83e4-a61f1bfcd434",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "e56f6d80-3864-4202-9929-6f812cf0c011",
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-03T21:26:06.948Z",
+      "updatedAt": "2025-10-03T21:26:06.948Z",
+      "role": "workflow:owner",
+      "workflowId": "1FWt5oARqKEZ8bQ8",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

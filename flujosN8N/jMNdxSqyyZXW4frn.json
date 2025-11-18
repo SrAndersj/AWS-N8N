@@ -1,0 +1,39 @@
+{
+  "createdAt": "2025-10-08T01:55:33.619Z",
+  "updatedAt": "2025-10-08T13:58:11.000Z",
+  "id": "jMNdxSqyyZXW4frn",
+  "name": "My workflow",
+  "active": false,
+  "isArchived": true,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "6e1f1bfe-4dc7-4573-8742-57d1fdbb1e62",
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-08T01:55:33.622Z",
+      "updatedAt": "2025-10-08T01:55:33.622Z",
+      "role": "workflow:owner",
+      "workflowId": "jMNdxSqyyZXW4frn",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "createdAt": "2025-10-22T19:29:44.055Z",
+  "updatedAt": "2025-10-22T21:09:17.000Z",
+  "id": "tFQAta8TAq5U7sE4",
+  "name": "Telegram",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -352,
+        -48
+      ],
+      "id": "503b84a0-447f-4855-ba4f-cc9b0d07f94f",
+      "name": "Telegram Trigger",
+      "webhookId": "26070f16-2413-4067-9344-ec7a30db563f",
+      "credentials": {
+        "telegramApi": {
+          "id": "VlkBeWbxgFNlA41U",
+          "name": "Here is the token for bot Amaru @AmaruHelper_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=entiende el contexto de lo que necesito y luego busca en internet lo mas actual posible\n\n {{ $json.message.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        -48
+      ],
+      "id": "c97c8b10-2a3e-48ea-972f-1da9a7fb4877",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        160
+      ],
+      "id": "edbea9f3-5dce-414c-8857-3e8570c95040",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "bxVux5UWXYAa7SWs",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        -48
+      ],
+      "id": "00370def-425d-4664-b148-5cf7654ad838",
+      "name": "Send a text message",
+      "webhookId": "3e9a3860-f7ae-41a7-adf4-c65d615887a8",
+      "credentials": {
+        "telegramApi": {
+          "id": "VlkBeWbxgFNlA41U",
+          "name": "Here is the token for bot Amaru @AmaruHelper_bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "ef388e50-8958-4b99-a599-b2b4420dc0b7",
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-22T19:29:44.066Z",
+      "updatedAt": "2025-10-22T19:29:44.066Z",
+      "role": "workflow:owner",
+      "workflowId": "tFQAta8TAq5U7sE4",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

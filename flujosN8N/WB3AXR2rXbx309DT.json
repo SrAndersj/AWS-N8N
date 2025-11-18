@@ -1,0 +1,424 @@
+{
+  "createdAt": "2025-10-07T14:38:08.166Z",
+  "updatedAt": "2025-10-22T20:33:19.000Z",
+  "id": "WB3AXR2rXbx309DT",
+  "name": "PlaneadorDeClases",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Planeador",
+        "formDescription": "<h1 style=\"text-align: center; font-size: 32px; color: #4CAF50; font-weight: bolder;\">\n    🎉 ¡Bienvenido al Planeador de Clases!Con la  IA Amaru 🌟\n</h1>\n<p style=\"text-align: center; font-size: 18px; color: #555; font-family: Arial, sans-serif;\">\n    Ingresa la información relevante para crear y planificar tu clase en el área de tu elección. 🚀💡\n</p>\n    📖🎓SrAndersj-Biochemders🔬🧪\n</p>\n",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email para envío de tu planeación",
+              "fieldType": "email",
+              "placeholder": "📧 Ingresa tu correo electrónico para recibir la planeación (Ej. tuemail@gmail.com )",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nombre de la Clase o tema a orientar",
+              "fieldType": "textarea",
+              "placeholder": "🧠 Escribe el nombre de la clase o el tema que vas a enseñar (Ej. Mezclas Heterogéneas y Homogéneas)",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nivel educativo ",
+              "fieldType": "textarea",
+              "placeholder": " 🎓 Indica el nivel educativo al que va dirigida la clase (Ej. Séptimo, Universidad, etc.)",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Materia",
+              "fieldType": "textarea",
+              "placeholder": "📘 ¿Qué materia vas a enseñar? (Ej. Química, Matemáticas, Historia, etc.)",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Metodología de enseñanza(Opcional)",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Clase Magistral"
+                  },
+                  {
+                    "option": "Aprendizaje Activo"
+                  },
+                  {
+                    "option": "Aprendizaje Practico"
+                  },
+                  {
+                    "option": "Aprendizaje social y emocional"
+                  },
+                  {
+                    "option": "DUA diseño universal para el aprendizaje"
+                  },
+                  {
+                    "option": "Aprendizaje Basado en casos"
+                  },
+                  {
+                    "option": "Aprendizaje basado en indagación"
+                  },
+                  {
+                    "option": "Aprendizaje basado en investigación"
+                  },
+                  {
+                    "option": "Aprendizaje basado en problemas"
+                  },
+                  {
+                    "option": "Aprendizaje basado en Proyectos"
+                  },
+                  {
+                    "option": "Aprendizaje basado en Retos"
+                  },
+                  {
+                    "option": "Aprendizaje Colaborativo"
+                  },
+                  {
+                    "option": "Aprendizaje Invertido"
+                  },
+                  {
+                    "option": "Design Thinking"
+                  },
+                  {
+                    "option": "Gamificación"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "¿Qué quieres que tus estudiantes aprendan con esta clase?(Opcional)",
+              "fieldType": "textarea",
+              "placeholder": "\"Indica los objetivos de aprendizaje que esperas alcanzar con esta clase 🧠📚. Ejemplo: 'Comprender los conceptos básicos de la química' o 'Desarrollar habilidades de análisis crítico'\""
+            },
+            {
+              "fieldLabel": "Aspectos específicos de la población  (Opcional)",
+              "fieldType": "textarea",
+              "placeholder": "\"Indique detalles sobre la etnia 🏽, raza 🌍, género 🚹🚺, edad 👶👵 y otras características relevantes de la población 🧑‍🤝‍🧑.\""
+            },
+            {
+              "fieldLabel": "Tu nombre",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Whatsapp(Opcional para Feedback)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -608,
+        -128
+      ],
+      "id": "83d0d957-5b50-4010-838d-d87f7073e978",
+      "name": "On form submission",
+      "webhookId": "2fb23d9c-feec-4df1-9988-11903d3d244f"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Actúa como un profesional en redacción de Plan de formación\n<instrucciones>\nte daré información proveniente de un formulario sobre la clase a orientar y tu me darás\n\nTipo de población que va a recibir la formación\n- Objetivo\n- Metodología\n- Contenido\n- Recursos\n- Evaluación\n \n</instrucciones>\n\n<reglas>\ncrea en HTML tu respuesta y se muy concreto ,en el contenido tienes que indicar puntualmente  lo que se hara en la clase , se creativo \nNo te salgas de tu rol\nusa negreillas para resaltar los textos cuando sea debido \ny crea un HTML ATRACTIVO \n\nsi sugieres generalidades como uso de herrameientas  colocale hipervinculo a alguna herramienta , agrega hipervinculos  que consideres necesearios que puedan ayudar a llevar a cabo el plan de formacion  ,\nsi propones experimentos explicalos a detalle\n</reglas>\n\n<Respuestas Formulario>\n\n\n{{ Object.keys($json)[1] }}\n{{ $json[Object.keys($json)[1]] }}\n\n{{ Object.keys($json)[2] }}\n{{ $json[Object.keys($json)[2]] }}\n\n{{ Object.keys($json)[3] }}\n{{ $json[Object.keys($json)[3]] }}\n\n{{ Object.keys($json)[4] }}\n{{ $json[Object.keys($json)[4]] }}\n\n{{ Object.keys($json)[5] }}\n{{ $json[Object.keys($json)[5]] }}\n\n{{ Object.keys($json)[6] }}\n{{ $json[Object.keys($json)[6]] }}\n\n</Respuestas Formulario> ",
+        "options": {
+          "systemMessage": "No escribas  nada de texto que no sea el que va dentro del HTML"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -432,
+        112
+      ],
+      "id": "c8db78d3-86d9-4281-b601-3ad2998d702b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        336
+      ],
+      "id": "e5c2218b-136a-4024-af7e-46178db3dac3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "bxVux5UWXYAa7SWs",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "{{ $json.output }}"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        64
+      ],
+      "id": "d7ad1eff-8f93-42b0-88ad-cdde36c0449a",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json[Object.keys($json)[0]] }}",
+        "subject": "=🚀 Clase Preparada sobre: {{ $json['Nombre de la Clase o tema a orientar'] }} 📚",
+        "message": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        704,
+        -160
+      ],
+      "id": "8262bf0f-f5a6-4b7e-a3eb-863ca9c7f482",
+      "name": "Send a message",
+      "webhookId": "52ea1233-8fb4-417c-a0eb-c2fc5d629c3f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "74UvCmbjWA7NUg5s",
+          "name": "jhonnatan.castano.documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        208,
+        -160
+      ],
+      "id": "26f661fb-23c9-481d-9695-08941e16a897",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1lutnU3pObutQ6bb179j9oXvTZ2WMiV_2HZOPCIAxB48",
+          "mode": "list",
+          "cachedResultName": "6CorreosPlaneadorClase",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lutnU3pObutQ6bb179j9oXvTZ2WMiV_2HZOPCIAxB48/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lutnU3pObutQ6bb179j9oXvTZ2WMiV_2HZOPCIAxB48/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json['Email para envío de tu planeación'] }}",
+            "nombre": "={{ $json['Tu nombre'] }}",
+            "NombreDeLaClaseAOrientar": "={{ $json['Nombre de la Clase o tema a orientar'] }}",
+            "NivelEducativo": "={{ $json['Nivel educativo '] }}",
+            "Materia": "={{ $json.Materia }}",
+            "Whatsapp": "={{ $json['Whatsapp(Opcional para Feedback)'] }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NombreDeLaClaseAOrientar",
+              "displayName": "NombreDeLaClaseAOrientar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NivelEducativo",
+              "displayName": "NivelEducativo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Materia",
+              "displayName": "Materia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Whatsapp",
+              "displayName": "Whatsapp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -352,
+        -272
+      ],
+      "id": "63d5d16c-495e-4483-b54e-d5a6ba7c8e4c",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "om2RfRqYKw1TvYhm",
+          "name": ".documentos"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "dcd45207-2d7c-4a30-b698-2897853b7e3d",
+  "triggerCount": 1,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-07T14:38:08.172Z",
+      "updatedAt": "2025-10-07T14:38:08.172Z",
+      "role": "workflow:owner",
+      "workflowId": "WB3AXR2rXbx309DT",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

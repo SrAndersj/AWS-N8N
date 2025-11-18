@@ -1,0 +1,582 @@
+{
+  "createdAt": "2025-10-03T20:33:01.881Z",
+  "updatedAt": "2025-11-10T22:01:24.000Z",
+  "id": "CM7pH6cP3iNA7iGz",
+  "name": "1EnviarCorreosColegios_CORREO_.DOCUMENTS",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1440,
+        176
+      ],
+      "id": "bf52f99f-33d1-4a2b-a502-74165ef6b63d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        -1168,
+        304
+      ],
+      "id": "0da19d66-2368-4681-bd44-239599303a83"
+    },
+    {
+      "parameters": {
+        "maxItems": 200
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1808,
+        176
+      ],
+      "id": "4b203b4b-f20e-462b-9943-ce138e3338ec",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Docente de Química te cuenta que la IA llegó para quedarse y puedo ayudarte con ello",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Correo con Imágenes y Emojis</title>\n  </head>\n  <body style=\"font-family: Arial, sans-serif; color: #333; line-height: 1.6;\">\n    \n    <!-- Saludo con variable dinámica -->\n    <h1 style=\"color: #4CAF50;\">🌟 ¡Hola <strong>{{ $json.Nombre }}</strong>! 🌟</h1>\n    \n    <p style=\"font-size: 18px;\">Soy <strong>Jhonnatan Andres Castaño Rojas</strong> 😎, paso para comentarte que la <strong>inteligencia artificial</strong> llegó para quedarse 🤖.</p>\n\n    <p style=\"font-size: 18px;\">He diseñado módulos de química asociados a <strong>inteligencia artificial</strong> con <strong>Prompt engineering</strong> 💻, direccionada para asistir a los estudiantes en cualquier momento ⏰ desde cualquier lugar 🌍.</p>\n\n    <p style=\"font-size: 18px;\">Además, tengo experiencia orientando clases desde <strong>cuarto grado hasta décimo</strong> 📚, en áreas como <strong>Ciencias Naturales, Biología y Química</strong> 🧪, lo que me permite comprender las necesidades educativas de los estudiantes en diferentes niveles 🎓.</p>\n\n    <p style=\"font-size: 18px;\">Por eso, quiero trabajar en tu colegio como <strong>Docente de Química</strong> 👨‍🏫, para implementar este desarrollo, porque <strong>¡amo enseñar!</strong> ❤️.</p>\n\n    <p style=\"font-size: 18px;\">📱 <strong>Puedes contactarme por WhatsApp</strong> haciendo clic aquí: <a href=\"https://wa.me/573219465022\" style=\"color: #1E90FF;\">Haz clic aquí 📲</a></p>\n\n    <p style=\"font-size: 18px;\">Si deseas usar el modelo para asistir al aprendizaje de balanceo de ecuaciones químicas, puedes acceder al siguiente enlace:</p>\n    <p style=\"font-size: 18px;\"><a href=\"https://chatgpt.com/g/g-681533bd191c8191b1a238afcaa66ef1-amaru-37-reacciones-quimicas-y-ecuaciones-quimica\" style=\"color: #FF6347; font-weight: bold;\">AMARU 3,7 Reacciones químicas y ecuaciones químicas</a></p>\n\n    <hr style=\"border: 1px solid #ddd; margin: 20px 0;\">\n\n    <!-- Contenedor de imágenes en línea (todas en la misma fila) -->\n    <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n\n      <!-- Primera imagen desde Google Drive -->\n      <div style=\"flex: 1; text-align: center; margin-right: 10px;\">\n        <img src=\"https://drive.google.com/uc?export=view&id=1GMu9m45Eak_2CPbC5Vr7pLwiwm5ujqwV\" alt=\"Imagen desde Google Drive 1\" width=\"250\" style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\">\n      </div>\n\n      <!-- Segunda imagen desde Google Drive -->\n      <div style=\"flex: 1; text-align: center; margin-left: 10px;\">\n        <img src=\"https://drive.google.com/uc?export=view&id=1QPAfWpwa4uhC5BfCf7E2kNXuc0iw6IND\" alt=\"Imagen desde Google Drive 2\" width=\"250\" style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\">\n      </div>\n\n      <!-- Tercera imagen desde Google Drive -->\n      <div style=\"flex: 1; text-align: center; margin-left: 10px;\">\n        <img src=\"https://drive.google.com/uc?export=view&id=1XQ3PepOo-B7cjzAKh18Rxs5NxkXuEGWJ\" alt=\"Imagen desde Google Drive 3\" width=\"800\" style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\">\n      </div>\n\n    </div>\n\n    <!-- Texto después de las imágenes -->\n    <p style=\"font-size: 18px; margin-top: 30px;\">\n      🚀 <strong>¡Aprovecha al máximo la Inteligencia Artificial!</strong> 🤖  \n      Para ayudarte en este emocionante viaje, he diseñado una serie de <strong>cursos súper breves</strong>, pensados para que los puedas ver en <strong>períodos cortos</strong> ⏳. ¡Pero ojo! ⚠️ Cada segundo cuenta, ya que cada video está lleno de información condensada, ¡y no querrás perderte de nada! 💡  \n      ¡Aprende de forma rápida y efectiva! 🔥\n    </p>\n\n    <p style=\"font-size: 18px;\">Aquí te dejo los enlaces a los primeros tres videos de esta serie:</p>\n\n    <ul style=\"font-size: 18px;\">\n      <li><a href=\"https://youtu.be/QhzsoueNk8Q\" style=\"color: #FF6347; font-weight: bold;\">1🚀 ChatGPT y la Inteligencia Artificial: Introducción para Principiantes 👨‍💻</a></li>\n      <li><a href=\"https://youtu.be/HR-a8ywRxig\" style=\"color: #FF6347; font-weight: bold;\">2💬 Cómo hablarle a ChatGPT 🤖 | Qué es un Prompt explicado fácil ✨</a></li>\n      <li><a href=\"https://youtu.be/Mdi3NAJXmm0\" style=\"color: #FF6347; font-weight: bold;\">3📊 Técnicas SHOT para hablar con la 🤖 Inteligencia Artificial | Formulación de Proyectos</a></li>\n    </ul>\n\n    <footer style=\"text-align: center; margin-top: 30px; font-size: 14px; color: #888;\">\n      <p>¡Espero tener noticias tuyas pronto! 🎉</p>\n      <p>📧 <strong>Correo de contacto:</strong> <a href=\"mailto:jhonnatan.castano@gmail.com\">jhonnatan.castano@gmail.com</a></p>\n    </footer>\n\n  </body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -832,
+        16
+      ],
+      "id": "3aa3e0a1-a6c2-4208-9738-f0695017c5b2",
+      "name": "CorreoLaIA",
+      "webhookId": "d6953df7-c1bc-488f-93bd-01b8ef91816a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "74UvCmbjWA7NUg5s",
+          "name": "jhonnatan.castano.documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4",
+          "mode": "list",
+          "cachedResultName": "1N8N_EMAIL_SEND_COLEGIOS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit#gid=0"
+        },
+        "options": {
+          "columnsToWatch": [
+            "Nombre"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2016,
+        176
+      ],
+      "id": "66d152e7-8fc9-4e29-a52d-fdfc8d0d6a0a",
+      "name": "CREDENCIALES .DOCUMENTOS",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "zX3rtURyUsfReYuq",
+          "name": "CREDENCIALES .DOCUMENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 40,
+        "filters": {
+          "q": "Mail Delivery Subsystem"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1904,
+        688
+      ],
+      "id": "223ced68-914d-4206-be30-f7fe4e0e0c1e",
+      "name": "Gmail",
+      "webhookId": "7bf24ee8-e148-4a40-8515-318e113493d8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qL85vrx2ZuuZY2u7",
+          "name": "quimico.morelia"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4",
+          "mode": "list",
+          "cachedResultName": "1N8N_EMAIL_SEND_COLEGIOS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 400758099,
+          "mode": "list",
+          "cachedResultName": "Fallido",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nfncWa8idyZbk2YwptClLhB1BGJVgelnzru0pTAl0f4/edit#gid=400758099"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.output }}",
+            "Error": "={{ $('Loop Over Items1').item.json.snippet }}",
+            "InternalDate": "={{ $('Loop Over Items1').item.json.internalDate }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "InternalDate",
+              "displayName": "InternalDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -736,
+        592
+      ],
+      "id": "8ae94ad5-7a58-43cc-bbaf-c85a31fbb149",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "om2RfRqYKw1TvYhm",
+          "name": ".documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 40,
+        "filters": {
+          "q": "Delivery has failed to these recipients or groups"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1904,
+        896
+      ],
+      "id": "b55283aa-a120-4550-b22b-3799cedaf480",
+      "name": "Gmail1",
+      "webhookId": "f7f6355b-86bb-44f4-ac69-3b446729ec15",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qL85vrx2ZuuZY2u7",
+          "name": "quimico.morelia"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1632,
+        816
+      ],
+      "id": "fe847f2c-81bc-4200-98a8-cd5d04ac6e04",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2192,
+        768
+      ],
+      "id": "6d9db177-2757-4a4f-9c7f-c4e20b1d9fa9",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7ffa4a12-188c-4ad2-a07f-955dce1a0ca3",
+              "name": "output",
+              "value": "={{ $json.snippet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/)[0] }}\n\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1040,
+        608
+      ],
+      "id": "616d2d69-8215-4010-8daa-1ddc862fa1b2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1344,
+        752
+      ],
+      "id": "a56f0636-a209-4da4-a874-637aacac7e86",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me1",
+      "typeVersion": 1,
+      "position": [
+        -896,
+        896
+      ],
+      "id": "adb3b7e0-2798-46ca-a1f5-83ff47bb63c9"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Perfil para Analista Jr Asuntos Regulatorios ✨ ¡Alineado con su Misión Transformadora! Profesional en Química • Especialización en Formulación y Evaluación de Proyectos",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Carta de Presentación</title>\n    <style>\n        body {\n            font-family: 'Arial', sans-serif;\n            max-width: 800px;\n            margin: 0 auto;\n            padding: 30px;\n            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\n        }\n        \n        .container {\n            background: white;\n            border-radius: 15px;\n            padding: 40px;\n            box-shadow: 0 10px 30px rgba(0,0,0,0.1);\n        }\n        \n        .header {\n            text-align: center;\n            margin-bottom: 30px;\n            border-bottom: 3px solid #3498db;\n            padding-bottom: 20px;\n        }\n        \n        .match-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n            gap: 20px;\n            margin: 30px 0;\n        }\n        \n        .match-item {\n            background: #f8f9fa;\n            padding: 20px;\n            border-radius: 10px;\n            border-left: 5px solid #3498db;\n        }\n        \n        .requirement {\n            font-weight: bold;\n            color: #2c3e50;\n            margin-bottom: 8px;\n        }\n        \n        .my-skill {\n            background: #e3f2fd;\n            color: #1976d2;\n            padding: 8px 12px;\n            border-radius: 20px;\n            display: inline-block;\n            margin: 3px;\n            font-size: 0.9em;\n        }\n\n        /* Colores para las secciones finales */\n        .conocimientos-basicos {\n            background: linear-gradient(120deg, #e3f2fd 0%, #bbdefb 100%);\n            border-left: 5px solid #1976d2;\n        }\n        \n        .competencias-comportamentales {\n            background: linear-gradient(120deg, #e8f5e8 0%, #c8e6c9 100%);\n            border-left: 5px solid #388e3c;\n        }\n        \n        .formacion-academica {\n            background: linear-gradient(120deg, #fff3e0 0%, #ffe0b2 100%);\n            border-left: 5px solid #f57c00;\n        }\n        \n        .experiencia {\n            background: linear-gradient(120deg, #fce4ec 0%, #f8bbd9 100%);\n            border-left: 5px solid #c2185b;\n        }\n        \n        .highlight {\n            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);\n            padding: 25px;\n            border-radius: 10px;\n            margin: 25px 0;\n            text-align: center;\n        }\n\n        .data-analyst {\n            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);\n            color: white;\n            padding: 25px;\n            border-radius: 10px;\n            margin: 25px 0;\n            text-align: center;\n        }\n        \n        .footer {\n            text-align: center;\n            margin-top: 30px;\n            color: #7f8c8d;\n            font-style: italic;\n        }\n\n        .requirements-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n            gap: 15px;\n            margin: 30px 0;\n        }\n\n        .requirement-item {\n            padding: 20px;\n            border-radius: 10px;\n            margin-bottom: 15px;\n        }\n\n        .requirement-title {\n            font-weight: bold;\n            margin-bottom: 10px;\n            font-size: 1.1em;\n        }\n\n        .section-title {\n            text-align: center;\n            margin: 40px 0 20px 0;\n            color: #2c3e50;\n            font-size: 1.3em;\n            font-weight: bold;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h1>🚀 Perfil para Analista Jr Asuntos Regulatorios</h1>\n            <h2>Jhonnatan Andres Castaño Rojas </h2>\n            \n        </div>\n\n        <div class=\"highlight\">\n            <h2>✨ ¡Alineado con su Misión Transformadora!</h2>\n            <p>Profesional en Química • Especialización en Formulación y Evaluación de Proyectos</p>\n        </div>\n\n        <div class=\"data-analyst\">\n            <h2>📊 Analista de Datos para Asuntos Regulatorios</h2>\n            <p>Automatización de procesos con Python • Análisis con Power BI • Optimización con IA</p>\n        </div>\n\n        <!-- MIS HABILIDADES ALINEADAS -->\n        <div class=\"section-title\">💫 MIS HABILIDADES ALINEADAS</div>\n\n        <div class=\"container\">\n            <div class=\"requirement-item formacion-academica\">\n                <div class=\"requirement\">🎓 Formación Académica</div>\n                <span class=\"my-skill\">Profesional en Química</span>\n                <span class=\"my-skill\">Especialización en Formulación y Evaluación de Proyectos</span>\n            </div>\n            \n            <div class=\"requirement-item experiencia\">\n                <div class=\"requirement\">⏳ Experiencia</div>\n                <span class=\"my-skill\">Más de 1 año experiencia</span>\n                <span class=\"my-skill\">Profesional de Acueducto</span>\n                <span class=\"my-skill\">Analista de Cromatografía</span>\n            </div>\n            \n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement\">🤖 Herramientas Ofimáticas & Análisis</div>\n                <span class=\"my-skill\">Python para Ciencia de Datos</span>\n                <span class=\"my-skill\">Power BI & Tableau</span>\n                <span class=\"my-skill\">Excel Avanzado</span>\n                <span class=\"my-skill\">n8n + Automatización IA</span>\n                <span class=\"my-skill\">Ingeniería de Prompts</span>\n            </div>\n            \n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement\">🧪 BPM & Control de Calidad</div>\n                <span class=\"my-skill\">BPM en Dirección Acueducto</span>\n                <span class=\"my-skill\">Control Calidad Agua Potable</span>\n                <span class=\"my-skill\">Procesos Estandarizados</span>\n            </div>\n            \n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement\">⚖️ Cumplimiento Normativo</div>\n                <span class=\"my-skill\">Control Calidad de Agua</span>\n                <span class=\"my-skill\">Análisis Normativo</span>\n                <span class=\"my-skill\">Gestión de Estándares</span>\n            </div>\n            \n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement\">🔍 Análisis Científico</div>\n                <span class=\"my-skill\">Cromatografía de Gases</span>\n                <span class=\"my-skill\">Análisis HPLC</span>\n                <span class=\"my-skill\">Validación de Resultados</span>\n            </div>\n            \n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement\">👥 Habilidades Comunicativas</div>\n                <span class=\"my-skill\">Liderazgo de 7 Personas</span>\n                <span class=\"my-skill\">Capacitación de Operarios</span>\n                <span class=\"my-skill\">Gestión de Equipos</span>\n            </div>\n            \n            <div class=\"requirement-item competencias-comportamentales\">\n                <div class=\"requirement\">💪 Competencias Clave</div>\n                <span class=\"my-skill\">Compromiso</span>\n                <span class=\"my-skill\">Ética Profesional</span>\n                <span class=\"my-skill\">Iniciativa</span>\n                <span class=\"my-skill\">Aprendizaje Continuo</span>\n                <span class=\"my-skill\">Adaptabilidad</span>\n                <span class=\"my-skill\">Resiliencia</span>\n                <span class=\"my-skill\">Trabajo en Equipo</span>\n            </div>\n        </div>\n\n        <div style=\"text-align: center; margin: 30px 0; padding: 20px; background: #2c3e50; color: white; border-radius: 10px;\">\n            <p><strong>🎯 Transformación Digital en Procesos Regulatorios • Más de 1 Año de Experiencia • Especialista en Proyectos</strong></p>\n        </div>\n\n\n        <!-- Enlace para compartir tu número de WhatsApp -->\n<div style=\"text-align: center; margin: 30px 0;\">\n    <p><a href=\"https://wa.me/573219465022\" target=\"_blank\" style=\"font-size: 18px; color: #25D366; text-decoration: none;\">📱 Escribeme por WhatsApp dando click aquí</a></p>\n</div>\n\n        <!-- REQUERIMIENTOS DE LA VACANTE ABAJO -->\n        <div class=\"section-title\">🎯 REQUERIMIENTOS DE LA VACANTE CON CORRELACIÓN DE COLORES</div>\n\n        <div class=\"requirements-grid\">\n            <div class=\"requirement-item conocimientos-basicos\">\n                <div class=\"requirement-title\">📋 Conocimientos Básicos o Esenciales</div>\n                <div>Normativa ante el INVIMA, Norma ISO 9001:2015, Manejo de BPM, Herramientas Ofimáticas, Habilidades comunicativas, Capacidad de análisis y síntesis de información científica.</div>\n            </div>\n            \n            <div class=\"requirement-item competencias-comportamentales\">\n                <div class=\"requirement-title\">🌟 Competencias Comportamentales</div>\n                <div>Vanguardismo, Resiliencia, altruismo, entusiasmo, cumplimiento, ética, espiritualidad, transparencia, compromiso, iniciativa, experticia, conocimiento del entorno, aprendizaje continuo, manejo de la información, relaciones interpersonales y disciplina.</div>\n            </div>\n            \n            <div class=\"requirement-item formacion-academica\">\n                <div class=\"requirement-title\">🎓 Formación Académica</div>\n                <div>Profesional en química farmacéutica, química pura, química aplicada o química industria</div>\n            </div>\n            \n            <div class=\"requirement-item experiencia\">\n                <div class=\"requirement-title\">⏳ Experiencia</div>\n                <div>Contar con 1 año de experiencia en posiciones similares</div>\n            </div>\n        </div>\n\n        <div class=\"footer\">\n            <p>Listo para aportar análisis de datos y experiencia científica a la revolución en medicina funcional</p>\n        </div>\n                <!-- Enlace para compartir tu número de WhatsApp -->\n<div style=\"text-align: center; margin: 30px 0;\">\n    <p><a href=\"https://wa.me/573219465022\" target=\"_blank\" style=\"font-size: 18px; color: #25D366; text-decoration: none;\">📱 Escribeme por WhatsApp dando click aquí</a></p>\n</div>\n    </div>\n\n    <!-- Enlace a la hoja de vida -->\n<div style=\"text-align: center; margin: 30px 0;\">\n    <p><a href=\"https://drive.google.com/file/d/1nrTuNJAjTqtEmliuBFCDZGPw36jop7T_/view?usp=sharing\" target=\"_blank\" style=\"font-size: 18px; color: #3498db; text-decoration: none;\">🔗 Ver mi h\n\n        \n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -832,
+        432
+      ],
+      "id": "a715383a-ad4b-481d-a826-15d9cab7e588",
+      "name": "Nutrabiotics",
+      "webhookId": "d6953df7-c1bc-488f-93bd-01b8ef91816a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "74UvCmbjWA7NUg5s",
+          "name": "jhonnatan.castano.documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- Solo insertar si el nombre del colegio no existe\nINSERT INTO colegios (colegio_id, nombre)\nSELECT \n    CONCAT('col_', LPAD((SELECT COUNT(*) + 1 FROM colegios), 4, '0')),  -- Generar el ID basado en el conteo\n    '{{ $json[\"Nombre\"] }}'  -- Nombre dinámico del nuevo colegio desde las variables de n8n\nWHERE NOT EXISTS (\n    SELECT 1 FROM colegios WHERE nombre = '{{ $json[\"Nombre\"] }}'  -- Verificar si el nombre ya existe\n);\n\n\n\n-- Solo insertar el correo si no existe ya en la tabla correos\nINSERT INTO correos (correo_id, correo, colegio_id)\nSELECT \n    CONCAT('cor_', LPAD((SELECT COUNT(*) + 1 FROM correos), 4, '0')),  -- Generar el correo_id\n    '{{ $json[\"Email\"] }}',  -- Correo dinámico desde las variables de n8n\n    (SELECT colegio_id FROM colegios WHERE nombre = '{{ $json[\"Nombre\"] }}')  -- Relacionar el correo con el colegio\nWHERE NOT EXISTS (\n    SELECT 1 FROM correos WHERE correo = '{{ $json[\"Email\"] }}'  -- Verificar si el correo ya existe\n);\n\n\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -1680,
+        368
+      ],
+      "id": "f4792200-887d-419d-a412-09648fb1eddb",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "mySql": {
+          "id": "CAUStyklbwgEgKUq",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Docente de Química 👨‍🏫|🎓 Curso Gratuito de Química para Colegio 📚 con Inteligencia Artificial para Química 🤖🧪 | ",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Correo con Imágenes y Emojis</title>\n  </head>\n  <body style=\"font-family: Arial, sans-serif; color: #333; line-height: 1.6\">\n    <!-- Saludo con variable dinámica -->\n    <h1 style=\"color: #4caf50\">\n      🌟 ¡Hola <strong>{{ $json.Nombre }}</strong>! 🌟\n    </h1>\n\n    <p style=\"font-size: 18px\">\n      Quiero compartirte un\n      <strong>curso gratuito de Química 📚</strong> que he iniciado\n      recientemente,\n      <strong\n        >pensado especialmente para los estudiantes de tu colegio 🎓</strong\n      >\n      junto con una <strong>inteligencia artificial 🤖</strong> para balanceo de\n      ecuaciones químicas 🧪⚗️.\n    </p>\n\n    <!-- Imagen añadida después del primer párrafo -->\n    <div style=\"text-align: center; margin-top: 20px\">\n      <img\n        src=\"https://drive.google.com/uc?export=view&amp;id=1XQ3PepOo-B7cjzAKh18Rxs5NxkXuEGWJ\"\n        alt=\"Imagen desde Google Drive 3\"\n        width=\"600\"\n        style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)\"\n      />\n    </div>\n\n    <!-- Compartir los videos -->\n    <p style=\"font-size: 18px\">\n      Te invito a compartir estos cursos con tus estudiantes:\n    </p>\n\n    <ul style=\"font-size: 18px\">\n      <li>\n        <a\n          href=\"https://youtu.be/llnXyKgoAR8\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >1🚀 Química, una ciencia para el siglo XXI</a\n        >\n      </li>\n      <li>\n        <a\n          href=\"https://youtu.be/7yClKAHWxw4\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >2🧪 Estudio de la Química 🔬📚</a\n        >\n      </li>\n      <li>\n        <a\n          href=\"https://youtu.be/n4mrUf5_c2c\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >3🔬 El método científico 💡</a\n        >\n      </li>\n    </ul>\n\n    <!-- Experiencia docente -->\n    <p style=\"font-size: 18px\">\n      Tengo experiencia orientando clases desde\n      <strong>cuarto grado hasta décimo</strong> 📚, en áreas como\n      <strong>Ciencias Naturales, Biología y Química</strong> 🧪, lo que me\n      permite comprender las necesidades educativas de los estudiantes en\n      diferentes niveles 🎓. Por lo cual he diseñado una\n      <strong>inteligencia artificial</strong> con\n      <strong>Prompt engineering</strong> 💻, dirigida para asistir a los\n      estudiantes en cualquier momento ⏰ desde cualquier lugar 🌍 para el\n      balanceo de ecuaciones químicas que puedes usar dando clic en el\n      siguiente enlace:\n    </p>\n\n    <p style=\"font-size: 18px\">\n      <a\n        href=\"https://chatgpt.com/g/g-681533bd191c8191b1a238afcaa66ef1-amaru-37-reacciones-quimicas-y-ecuaciones-quimica\"\n        style=\"color: #ff6347; font-weight: bold\"\n        >AMARU 3,7 Reacciones químicas y ecuaciones químicas</a\n      >\n    </p>\n\n    <!-- Contenedor de imágenes en línea (todas en la misma fila) -->\n    <div\n      style=\"display: flex; justify-content: space-between; align-items: center\"\n    >\n      <!-- Primera imagen desde Google Drive -->\n      <div style=\"flex: 1; text-align: center; margin-right: 10px\">\n        <img\n          src=\"https://drive.google.com/uc?export=view&id=1GMu9m45Eak_2CPbC5Vr7pLwiwm5ujqwV\"\n          alt=\"Imagen desde Google Drive 1\"\n          width=\"250\"\n          style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)\"\n        />\n      </div>\n\n      <!-- Segunda imagen desde Google Drive -->\n      <div style=\"flex: 1; text-align: center; margin-left: 10px\">\n        <img\n          src=\"https://drive.google.com/uc?export=view&id=1QPAfWpwa4uhC5BfCf7E2kNXuc0iw6IND\"\n          alt=\"Imagen desde Google Drive 2\"\n          width=\"250\"\n          style=\"border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)\"\n        />\n      </div>\n    </div>\n\n    <!-- Contacto WhatsApp -->\n    <p style=\"font-size: 18px\">\n      📱 <strong>Puedes contactarme por WhatsApp</strong> haciendo clic aquí:\n      <a href=\"https://wa.me/573219465022\" style=\"color: #1e90ff\"\n        >Haz clic aquí 📲</a\n      >\n    </p>\n\n    <p style=\"font-size: 18px\">\n      Además, si quieres aumentar la velocidad de tu desempeño administrativo, te\n      comparto una serie de videos cortos para ayudarte a\n      <strong>usar la inteligencia artificial</strong>\n    </p>\n\n    <ul style=\"font-size: 18px\">\n      <li>\n        <a\n          href=\"https://youtu.be/QhzsoueNk8Q\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >1🚀 ChatGPT y la Inteligencia Artificial: Introducción para\n          principiantes 👨‍💻</a\n        >\n      </li>\n      <li>\n        <a\n          href=\"https://youtu.be/HR-a8ywRxig\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >2💬 Cómo hablarle a ChatGPT 🤖 | Qué es un Prompt explicado fácil\n          ✨</a\n        >\n      </li>\n      <li>\n        <a\n          href=\"https://youtu.be/Mdi3NAJXmm0\"\n          style=\"color: #ff6347; font-weight: bold\"\n          >3📊 Técnicas SHOT para hablar con la 🤖 Inteligencia Artificial |\n          Formulación de Proyectos</a\n        >\n      </li>\n    </ul>\n\n    <!-- Firma al final -->\n    <p style=\"font-size: 18px; margin-top: 24px;\">\n      Atentamente,<br />\n      <strong>Jhonnatan Andrés Castaño Rojas</strong><br />\n      <em>Químico</em>\n    </p>\n\n    <footer\n      style=\"text-align: center; margin-top: 30px; font-size: 14px; color: #888\"\n    >\n      <p>¡Espero tener noticias tuyas pronto! 🎉</p>\n      <p>\n        📧 <strong>Correo de contacto:</strong>\n        <a href=\"mailto:jhonnatan.castano@gmail.com\"\n          >jhonnatan.castano@gmail.com</a\n        >\n      </p>\n    </footer>\n  </body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -800,
+        208
+      ],
+      "id": "1345f836-e9f0-40aa-b43f-e78fd815d7fa",
+      "name": "cursoQuimica",
+      "webhookId": "d6953df7-c1bc-488f-93bd-01b8ef91816a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "74UvCmbjWA7NUg5s",
+          "name": "jhonnatan.castano.documentos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## correo quimico.morelia"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -592,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "f6e983c6-257d-49fe-a1cc-ed04397921b7",
+      "name": "Sticky Note"
+    }
+  ],
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "cursoQuimica",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CREDENCIALES .DOCUMENTOS": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replace Me1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "1979e1a9-f703-47c4-bc36-275cf3452834",
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-10-03T20:33:01.885Z",
+      "updatedAt": "2025-10-03T20:33:01.885Z",
+      "role": "workflow:owner",
+      "workflowId": "CM7pH6cP3iNA7iGz",
+      "projectId": "mue1b8Em2KpsFOEq",
+      "project": {
+        "createdAt": "2025-10-03T20:20:51.778Z",
+        "updatedAt": "2025-10-03T20:27:02.301Z",
+        "id": "mue1b8Em2KpsFOEq",
+        "name": "jhonnatan  Andres castaño Rojas <jhonnatan.castano@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}
